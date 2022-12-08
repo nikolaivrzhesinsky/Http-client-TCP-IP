@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClient2", "HttpClient2\HttpClient2.csproj", "{B81E381D-725E-454B-B58B-A61879D5D28B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B81E381D-725E-454B-B58B-A61879D5D28B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B81E381D-725E-454B-B58B-A61879D5D28B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B81E381D-725E-454B-B58B-A61879D5D28B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B81E381D-725E-454B-B58B-A61879D5D28B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
