@@ -26,6 +26,8 @@ namespace HttpClient_.net_6._0_
             catch (SocketException ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.ErrorCode);
             }
         }
         private static string InitServer()

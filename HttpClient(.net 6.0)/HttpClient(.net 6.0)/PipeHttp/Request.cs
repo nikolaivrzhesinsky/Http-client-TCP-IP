@@ -13,6 +13,7 @@ namespace HttpClient_.net_6._0_.PipeHttp
         {
             var stream = tcpClient.GetStream();
             var requestMessage = $"GET / HTTP/1.1\r\nHost: {Connect.GetServer()}\r\nConnection: Close\r\n\r\n";
+            Console.WriteLine(requestMessage);
             var requestData = Encoding.UTF8.GetBytes(requestMessage);
             await stream.WriteAsync(requestData);
         }

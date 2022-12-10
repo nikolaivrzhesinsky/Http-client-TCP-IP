@@ -15,8 +15,11 @@ namespace HttpClient_.net_6._0_
             await Connect.CreateConn(tcpClient);
 
             await Request.RequestHttp(tcpClient);
-
-            await Response.ResponseHttp(tcpClient);
+            
+            await new Response().ResponseHttp(tcpClient); // тут было статик
+            
+           
+            
 
         }
     }
