@@ -1,0 +1,20 @@
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\bin\Debug\net6.0-windows\User Interface.exe
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\bin\Debug\net6.0-windows\User Interface.deps.json
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\bin\Debug\net6.0-windows\User Interface.runtimeconfig.json
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\bin\Debug\net6.0-windows\User Interface.dll
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\bin\Debug\net6.0-windows\User Interface.pdb
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\bin\Debug\net6.0-windows\Engine.dll
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\bin\Debug\net6.0-windows\Engine.pdb
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.csproj.AssemblyReference.cache
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User_Interface.StartMenu.resources
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.csproj.GenerateResource.cache
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.AssemblyInfoInputs.cache
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.AssemblyInfo.cs
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.csproj.CoreCompileInputs.cache
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.csproj.CopyComplete
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.dll
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\refint\User Interface.dll
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.pdb
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\User Interface.genruntimeconfig.cache
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\User Interface\obj\Debug\net6.0-windows\ref\User Interface.dll

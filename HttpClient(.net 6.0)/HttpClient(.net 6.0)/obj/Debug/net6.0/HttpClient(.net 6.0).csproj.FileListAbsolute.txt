@@ -1,0 +1,15 @@
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).exe
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).deps.json
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).runtimeconfig.json
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).dll
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).pdb
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).csproj.AssemblyReference.cache
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).AssemblyInfoInputs.cache
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).AssemblyInfo.cs
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).csproj.CoreCompileInputs.cache
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).dll
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\refint\HttpClient(.net 6.0).dll
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).pdb
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).genruntimeconfig.cache
+D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\ref\HttpClient(.net 6.0).dll
