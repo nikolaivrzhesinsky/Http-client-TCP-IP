@@ -35,5 +35,11 @@ namespace HttpClient_.net_6._0_
             Console.WriteLine("Введите url");
             return Console.ReadLine();
         }
+
+        public static void CloseConn(TcpClient tcpClient)
+        {
+            tcpClient.Close();      
+            Console.WriteLine("Is server in work?: "+tcpClient.Connected);     
+        }
     }
 }

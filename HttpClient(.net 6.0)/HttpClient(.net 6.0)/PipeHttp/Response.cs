@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace HttpClient_.net_6._0_.PipeHttp
 {
     public class Response
@@ -15,26 +16,88 @@ namespace HttpClient_.net_6._0_.PipeHttp
         private string subtype;
         private string encoding;
         private string MessageBody;
+        private int contentLength;
         public async Task ResponseHttp(TcpClient tcpClient) // тут было статик
         {
             var stream = tcpClient.GetStream();
             var responseData = new byte[512];
 
-            var response = new StringBuilder();
             int bytes;
+            var responseHeaders = new StringBuilder();
+            List<byte> headersList = new List<byte>();
+            string flagEndHeaders=null;
+            //byte[] byteFlag = Encoding.UTF8.GetBytes(flagEndHeaders);
+            
             do
             {
-                bytes = await stream.ReadAsync(responseData);
-                response.Append(Encoding.UTF8.GetString(responseData, 0, bytes));
+                bytes = await stream.ReadAsync(responseData,0,1);
+                //response.Append(Encoding.UTF8.GetString(responseData, 0, bytes));
+                string temp = Encoding.UTF8.GetString(responseData, 0, bytes);
+                
+                if (temp == "\r" || temp == "\n")
+                {
+                    flagEndHeaders += temp;
+                }
+                responseHeaders.Append((Encoding.UTF8.GetString(responseData, 0, bytes)));
             }
-            while (bytes > 0);
+            while (bytes > 0 && !responseHeaders.ToString().Contains("\r\n\r\n"));
 
-            //Console.WriteLine(response);
+            Console.WriteLine(responseHeaders);
+            DecodeResponse(responseHeaders.ToString());
 
-            String responseToString = response.ToString();
-            
-            DecodeResponse(responseToString);
+            await GetBodyCL(stream);
+
+            //downloadFile(); 
         }
+
+        private async Task GetBodyCL(NetworkStream stream)
+        {
+            byte[] byteBody = new byte[contentLength];
+            MemoryStream streamFile = new MemoryStream(byteBody);
+            var path = "test3." + subtype;
+            
+            var responseData = new byte[1];
+            int counter = 0;
+            var responseBody = new StringBuilder();
+            int bytes;
+
+            using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
+            {
+                do
+                {
+                    bytes = await stream.ReadAsync(responseData, 0, 1);
+                    counter++;
+                    responseBody.Append(Encoding.UTF8.GetString(responseData, 0, bytes));
+                    byteBody[counter-1] = responseData[0];
+                    if (counter >= contentLength)
+                    {
+                        break;
+                    }
+                } while (bytes > 0);
+                
+                writer.Write(byteBody);
+                Console.WriteLine("File has been written");
+            }
+
+            Console.WriteLine(responseBody);
+        }
+        
+        public async Task downloadFile()
+        {
+
+            byte[] byteBody = Encoding.ASCII.GetBytes(MessageBody);
+            MemoryStream stream = new MemoryStream(byteBody);
+
+            var path = "test3." + subtype;
+            using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
+            {
+                Console.WriteLine(Environment.CurrentDirectory);
+                writer.Write(byteBody);
+                
+                Console.WriteLine("File has been written");
+            }
+        }
+        
 
         private void SetContentType(string fieldValue)
         {
@@ -56,6 +119,12 @@ namespace HttpClient_.net_6._0_.PipeHttp
         {
             this.encoding = fieldValue.Trim();
         }
+
+        private void SetContentLength(string fieldValue)
+        {
+            this.contentLength = Convert.ToInt32((fieldValue.Trim()));
+        }
+
         
         private void SetHeader(string header)
         {
@@ -69,34 +138,39 @@ namespace HttpClient_.net_6._0_.PipeHttp
             {
                 SetTransferEncoding(fieldValue);
             }
-            // Console.WriteLine(fieldName + "\n" + fieldValue);
+            else if (fieldName == "Content-Length")
+            {
+                SetContentLength(fieldValue);
+            }
         }
 
         public void DecodeResponse(String response) // тут было статик
         {
-            Console.WriteLine(response);
             var responseStrings = response.Split("\r\n");
             this.statusCode = Convert.ToInt32(responseStrings[0].Split(' ')[1]);
-            int i = 1;
-            while (!String.IsNullOrEmpty(responseStrings[i]))
+            for (int i = 1; i < responseStrings.Length - 2; i++)
+            {
+                this.SetHeader(responseStrings[i]);
+            }
+            /*while (!String.IsNullOrEmpty(responseStrings[i]))
             {
                 this.SetHeader(responseStrings[i]);
                 i++;
-            }
-            StringBuilder MessageBody = new StringBuilder();
+            }*/
+            /*StringBuilder MessageBody = new StringBuilder();
             i++;
             while (i + 1 < responseStrings.Length) // case if chunked 
             {
                 MessageBody.Append(responseStrings[i + 1]);
                 i += 2;
             }
-            this.MessageBody = MessageBody.ToString();
+            this.MessageBody = MessageBody.ToString();*/
             Console.WriteLine(this.statusCode);
             Console.WriteLine(this.type);
             Console.WriteLine(this.subtype);
             Console.WriteLine(this.encoding);
-
-            Console.WriteLine(this.MessageBody);
+            Console.WriteLine("content-length: " + Convert.ToString(this.contentLength));
+            //Console.WriteLine(this.MessageBody);
         }
     }
 }

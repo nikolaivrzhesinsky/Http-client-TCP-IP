@@ -18,7 +18,7 @@ namespace HttpClient_.net_6._0_
             
             await new Response().ResponseHttp(tcpClient); // тут было статик
             
-           
+            Connect.CloseConn(tcpClient);
             
 
         }

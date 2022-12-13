@@ -8,4 +8,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="obj\project.packagespec.json" />
+  </ItemGroup>
+
 </Project>
