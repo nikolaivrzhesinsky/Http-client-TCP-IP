@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)syncfusion.htmltopdfconverter.winforms\20.3.0.60\build\net5.0-windows7.0\Syncfusion.HtmlToPdfConverter.WinForms.targets" Condition="Exists('$(NuGetPackageRoot)syncfusion.htmltopdfconverter.winforms\20.3.0.60\build\net5.0-windows7.0\Syncfusion.HtmlToPdfConverter.WinForms.targets')" />
+  </ImportGroup>
+</Project>
