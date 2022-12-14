@@ -106,6 +106,12 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "Syncfusion.HtmlToPdfConverter.WinForms": {
+              "target": "Package",
+              "version": "[20.3.0.60, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

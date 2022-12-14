@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpClient(.net 6.0)", "HttpClient(.net 6.0)\HttpClient(.net 6.0).csproj", "{D15EBCBD-E880-44E0-91F4-496607D2EE56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{DFF0188C-58EE-498A-82F8-9915EF8BCD2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine", "Engine\Engine.csproj", "{DFF0188C-58EE-498A-82F8-9915EF8BCD2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User Interface", "User Interface\User Interface.csproj", "{F8A6815A-EB71-4A6A-93F8-648A18C3CBD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User Interface", "User Interface\User Interface.csproj", "{F8A6815A-EB71-4A6A-93F8-648A18C3CBD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

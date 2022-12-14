@@ -8,10 +8,60 @@
     ".NETCoreApp,Version=v6.0": {
       "User Interface/1.0.0": {
         "dependencies": {
-          "Engine": "1.0.0"
+          "Engine": "1.0.0",
+          "Syncfusion.HtmlToPdfConverter.WinForms": "20.3.0.60"
         },
         "runtime": {
           "User Interface.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "Syncfusion.Compression.Base/20.3.0.60": {
+        "runtime": {
+          "lib/net5.0/Syncfusion.Compression.Base.dll": {
+            "assemblyVersion": "20.3500.0.60",
+            "fileVersion": "20.3500.0.60"
+          }
+        }
+      },
+      "Syncfusion.HtmlToPdfConverter.WinForms/20.3.0.60": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "Syncfusion.Compression.Base": "20.3.0.60",
+          "Syncfusion.Pdf.WinForms": "20.3.0.60"
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/Syncfusion.HtmlConverter.Base.dll": {
+            "assemblyVersion": "20.3500.0.60",
+            "fileVersion": "20.3500.0.60"
+          }
+        }
+      },
+      "Syncfusion.Licensing/20.3.0.60": {
+        "runtime": {
+          "lib/net6.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "20.3.0.60",
+            "fileVersion": "20.3.0.60"
+          }
+        }
+      },
+      "Syncfusion.Pdf.WinForms/20.3.0.60": {
+        "dependencies": {
+          "Syncfusion.Compression.Base": "20.3.0.60",
+          "Syncfusion.Licensing": "20.3.0.60"
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/Syncfusion.Pdf.Base.dll": {
+            "assemblyVersion": "20.3500.0.60",
+            "fileVersion": "20.3500.0.60"
+          }
         }
       },
       "Engine/1.0.0": {
@@ -26,6 +76,41 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "Syncfusion.Compression.Base/20.3.0.60": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eHEoGjHZOc6n7k1Tlt9p7Y2V4pvUFE8ZkxQ3B5X1gtOMQG8ajtlKPFEl1/D3Oy4khC0Hij/4NPas0Or8sx81ww==",
+      "path": "syncfusion.compression.base/20.3.0.60",
+      "hashPath": "syncfusion.compression.base.20.3.0.60.nupkg.sha512"
+    },
+    "Syncfusion.HtmlToPdfConverter.WinForms/20.3.0.60": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lb/4GcqfjGq6QNKDUV43+mEvCkU9gA0xE+QGQ9/9ECXnXXA+qDyezAqwg2jbA2jhwPQ8+gf2amSAfI1aY+vq8A==",
+      "path": "syncfusion.htmltopdfconverter.winforms/20.3.0.60",
+      "hashPath": "syncfusion.htmltopdfconverter.winforms.20.3.0.60.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/20.3.0.60": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CqgwRK4uKKx/2i9FRzM/N+sym1PqFBeWJglcXsREEQliLaesjsb/++ebSn81MVuoKWusTFNv5TlrqThnXXeUxA==",
+      "path": "syncfusion.licensing/20.3.0.60",
+      "hashPath": "syncfusion.licensing.20.3.0.60.nupkg.sha512"
+    },
+    "Syncfusion.Pdf.WinForms/20.3.0.60": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2KX+De8xjD2LIqHxQsLMC2e6DTTJNyrRtnZw3Q1cO9St+wk9MnrhgnFWtzkvnDaJl4bYjYMaco7Ssg4NHn/wJw==",
+      "path": "syncfusion.pdf.winforms/20.3.0.60",
+      "hashPath": "syncfusion.pdf.winforms.20.3.0.60.nupkg.sha512"
     },
     "Engine/1.0.0": {
       "type": "project",

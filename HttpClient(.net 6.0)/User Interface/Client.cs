@@ -15,7 +15,7 @@ namespace User_Interface
             client = new TcpClient();
         } 
         
-        private static Client _instance;
+        private static Client? _instance;
 
         public static Client GetInstance()
         {
