@@ -12,12 +12,21 @@ namespace HttpClient_.net_6._0_
         {
             using TcpClient tcpClient = new TcpClient();
 
+            Request.GetRequestFromUri("https://www.google.com//");
+            
             await Connect.CreateConn(tcpClient);
 
             await Request.RequestHttp(tcpClient);
-            
-            await new Response().ResponseHttp(tcpClient); // тут было статик
-            
+
+            if (Request.requestUri.Scheme == "http")
+            {
+                await new Response().ResponseHttp(tcpClient); // тут было статик
+            }
+            else
+            {
+                new ResponseHttps().ResponseHttp(tcpClient);
+            }
+
             Connect.CloseConn(tcpClient);
             
 
