@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO.Enumeration;
 using System.Linq;
+using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace HttpClient_.net_6._0_.PipeHttp
 {
-    public class Response
+    public class ResponseHttps
     {
         private int statusCode;
         private string type; // можно сделать объект сообщения отдельным классом
@@ -24,18 +26,43 @@ namespace HttpClient_.net_6._0_.PipeHttp
 
         private static string? fileNameUri;
         
-        public async Task ResponseHttp(TcpClient tcpClient) // тут было статик
+        public void ResponseHttp(TcpClient tcpClient) // тут было статик
         {
             var responseData = new byte[512];
-            var stream=tcpClient.GetStream();
             int bytes;
             var responseHeaders = new StringBuilder();
             List<byte> headersList = new List<byte>();
             string flagEndHeaders = null;
 
+            
+            SslStream sslStream = new SslStream(
+                tcpClient.GetStream(),
+                false,
+                new RemoteCertificateValidationCallback(ValidateServerCertificate),
+                null
+            );
+            
+            string serverName = Request.requestUri.Host;
+            Console.WriteLine(serverName);
+            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            
+            try
+            {
+                sslStream.ReadTimeout = 5000; // wait 10 seconds for a response ...
+                Console.WriteLine("ConnectAndAuthenicate: AuthenticateAsClient CALLED ({0})", serverName);
+                sslStream.AuthenticateAsClient(serverName,null,SslProtocols.None,false);
+                Console.WriteLine("ConnectAndAuthenicate: AuthenticateAsClient COMPLETED SUCCESSFULLY");
+            }
+            catch (Exception x)
+            {
+                Console.WriteLine("ConnectAndAuthenicate: EXCEPTION >> AuthenticateAsClient: {0}", x.ToString());
+                tcpClient.Close(); tcpClient = null;
+                sslStream.Close(); sslStream = null;
+            }
+            
             do
             {
-                bytes = await stream.ReadAsync(responseData,0,1);
+                bytes = sslStream.Read(responseData,0,1);
                 string temp = Encoding.UTF8.GetString(responseData, 0, bytes);
                 
                 if (temp == "\r" || temp == "\n")
@@ -56,7 +83,7 @@ namespace HttpClient_.net_6._0_.PipeHttp
                     var chunkStr = new StringBuilder();
                     do
                     {
-                        bytes = await stream.ReadAsync(responseData, 0, 1);
+                        bytes = sslStream.Read(responseData, 0, 1);
                         chunkStr.Append((Encoding.UTF8.GetString(responseData, 0, bytes)));
                     } while (bytes > 0 && !chunkStr.ToString().Contains("\r\n"));
 
@@ -65,20 +92,20 @@ namespace HttpClient_.net_6._0_.PipeHttp
                     chunkLength = Convert.ToInt32(chunkStr.ToString().Remove(chunkStr.Length - 2), 16);
                     Console.WriteLine(chunkLength);
                     if (chunkLength > 0)
-                    {
-                        await GetBodyCL(stream, chunkLength);
+                    { 
+                        GetBodyCL(sslStream, chunkLength);
                     }
-                    bytes = await stream.ReadAsync(responseData, 0, 2);
+                    bytes = sslStream.Read(responseData, 0, 2);
                 } while (chunkLength != 0);
 
                 Console.WriteLine("i'm out");
             }
-            else await GetBodyCL(stream);
+            else GetBodyCL(sslStream);
             
             //downloadFile(); 
         }
 
-        private async Task GetBodyCL(NetworkStream stream, int chunkLength = -1)
+        private void GetBodyCL(SslStream stream, int chunkLength = -1)
         {
             if (chunkLength >= 0)
             {
@@ -97,7 +124,7 @@ namespace HttpClient_.net_6._0_.PipeHttp
             {
                 do
                 {
-                    bytes = await stream.ReadAsync(responseData, 0, 1);
+                    bytes = stream.Read(responseData, 0, 1);
                     counter++;
                     responseBody.Append(Encoding.UTF8.GetString(responseData, 0, bytes));
                     byteBody[counter-1] = responseData[0];
@@ -188,11 +215,24 @@ namespace HttpClient_.net_6._0_.PipeHttp
             //Console.WriteLine(this.MessageBody);
         }
         
-        private static bool ValidateServerCertificate(object sender, X509Certificate certificate,
-            X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        public static bool ValidateServerCertificate(
+            object sender,
+            X509Certificate certificate,
+            X509Chain chain,
+            SslPolicyErrors sslPolicyErrors)
         {
-            return true;
+            if (sslPolicyErrors == SslPolicyErrors.None) {
+                return true;
+            }
+
+            Console.WriteLine("Certificate error: {0}", sslPolicyErrors);
+
+            // refuse connection
+            return false;
         }
+        
+       
         
     }
 }
+        

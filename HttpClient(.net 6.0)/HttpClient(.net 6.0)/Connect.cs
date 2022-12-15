@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using HttpClient_.net_6._0_.PipeHttp;
 
 namespace HttpClient_.net_6._0_
 {
@@ -19,8 +20,10 @@ namespace HttpClient_.net_6._0_
         {
             try
             {
-                _server = InitServer();
-                await tcpClient.ConnectAsync(_server, 80);
+                _server = Request.requestUri.DnsSafeHost;
+                int port = Request.requestUri.Scheme == "http" ?  80 : 443;
+                
+                await tcpClient.ConnectAsync(_server, port);
                 Console.WriteLine("Подключение установлено");
             }
             catch (SocketException ex)
