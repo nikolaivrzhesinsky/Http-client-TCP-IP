@@ -10,7 +10,7 @@ namespace HttpClient_.net_6._0_
     {
         static async Task Main(string[] args)
         {
-            using TcpClient tcpClient = new TcpClient();
+            /*using TcpClient tcpClient = new TcpClient();
 
             Request.GetRequestFromUri("https://wikipedia.org//");
             
@@ -29,6 +29,8 @@ namespace HttpClient_.net_6._0_
             }
 
             Connect.CloseConn(tcpClient);
+            */
+            Console.WriteLine("Hui");
             
 
         }
