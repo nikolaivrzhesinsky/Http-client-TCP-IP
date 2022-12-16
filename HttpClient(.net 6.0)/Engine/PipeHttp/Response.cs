@@ -16,7 +16,7 @@ namespace Engine
         private string MessageBody;
         private int contentLength;
         private string location;
-        private int _fileIndex = 0;
+        private static int _fileIndex = 0;
         private String pathFile;
 
         private static string? fileNameUri;
@@ -31,6 +31,8 @@ namespace Engine
             var responseHeaders = new StringBuilder();
             List<byte> headersList = new List<byte>();
             string flagEndHeaders = null;
+
+            _fileIndex++;
 
             do
             {
@@ -86,8 +88,6 @@ namespace Engine
             byte[] byteBody = new byte[contentLength];
             MemoryStream streamFile = new MemoryStream(byteBody);
             pathFile = $"responseResult{_fileIndex}." + subtype;
-            _fileIndex++;
-            //Console.WriteLine(path);
             var responseData = new byte[1];
             int counter = 0;
             var responseBody = new StringBuilder();
