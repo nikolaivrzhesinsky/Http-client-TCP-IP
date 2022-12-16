@@ -16,7 +16,7 @@ namespace Engine
         private string MessageBody;
         private int contentLength;
         private string location;
-
+        private int _fileIndex = 0;
         private String pathFile;
 
         private static string? fileNameUri;
@@ -85,14 +85,15 @@ namespace Engine
             }
             byte[] byteBody = new byte[contentLength];
             MemoryStream streamFile = new MemoryStream(byteBody);
-            var path = "test2." + subtype;
-            Console.WriteLine(path);
+            pathFile = $"responseResult{_fileIndex}." + subtype;
+            _fileIndex++;
+            //Console.WriteLine(path);
             var responseData = new byte[1];
             int counter = 0;
             var responseBody = new StringBuilder();
             int bytes;
 
-            using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Append)))
+            using (BinaryWriter writer = new BinaryWriter(File.Open(pathFile, FileMode.Append)))
             {
                 do
                 {

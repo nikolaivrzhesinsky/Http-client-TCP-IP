@@ -13,8 +13,7 @@ namespace Engine
 
         public static async Task RequestHttp()
         {
-            TcpClient tcpClient = Connect.tcpClient;
-            var stream = tcpClient.GetStream();
+            var stream = Connect.tcpClient.GetStream();
             
             //var requestMessage = $"GET /images/branding/googlelogo/tio1x/googlelogo_color_272x92dp.png HTTP/1.1\r\n" +
             //                   $"Host: {Connect.GetServer()}\r\nConnecn: keep alive\r\n\r\n";
