@@ -10,3 +10,15 @@ D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\
 D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\refint\Engine.dll
 D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\Engine.pdb
 D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\ref\Engine.dll
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\bin\Debug\net6.0\Engine.deps.json
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\bin\Debug\net6.0\Engine.dll
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\bin\Debug\net6.0\Engine.pdb
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\Engine.csproj.AssemblyReference.cache
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\Engine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\Engine.AssemblyInfoInputs.cache
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\Engine.AssemblyInfo.cs
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\Engine.csproj.CoreCompileInputs.cache
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\Engine.dll
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\refint\Engine.dll
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\Engine.pdb
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\Engine\obj\Debug\net6.0\ref\Engine.dll

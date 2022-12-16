@@ -26,41 +26,32 @@ namespace HttpClient_.net_6._0_.PipeHttp
 
         private static string? fileNameUri;
         
-        public void ResponseHttp(TcpClient tcpClient) // тут было статик
+        public void  ResponseHttp(SslStream sslStream) // тут было статик
         {
-            var responseData = new byte[512];
-            int bytes;
-            var responseHeaders = new StringBuilder();
-            List<byte> headersList = new List<byte>();
+            byte[] responseData = new byte[512];
+            int bytes=-1;
+            StringBuilder responseHeaders = new StringBuilder();
             string flagEndHeaders = null;
-
-            
-            SslStream sslStream = new SslStream(
-                tcpClient.GetStream(),
-                false,
-                new RemoteCertificateValidationCallback(ValidateServerCertificate),
-                null
-            );
-            
-            string serverName = Request.requestUri.Host;
-            Console.WriteLine(serverName);
-            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            
-            try
-            {
-                sslStream.ReadTimeout = 5000; // wait 10 seconds for a response ...
-                Console.WriteLine("ConnectAndAuthenicate: AuthenticateAsClient CALLED ({0})", serverName);
-                sslStream.AuthenticateAsClient(serverName,null,SslProtocols.None,false);
-                Console.WriteLine("ConnectAndAuthenicate: AuthenticateAsClient COMPLETED SUCCESSFULLY");
-            }
-            catch (Exception x)
-            {
-                Console.WriteLine("ConnectAndAuthenicate: EXCEPTION >> AuthenticateAsClient: {0}", x.ToString());
-                tcpClient.Close(); tcpClient = null;
-                sslStream.Close(); sslStream = null;
-            }
-            
             do
+            {
+                // получаем данные
+                bytes = sslStream.Read(responseData,0,responseData.Length);
+                Decoder decoder = Encoding.UTF8.GetDecoder();
+                char[] chars = new char[decoder.GetCharCount(responseData, 0, bytes)];
+                decoder.GetChars(responseData, 0, bytes, chars, 0);
+                responseHeaders.Append(chars);
+
+                if (responseHeaders.ToString().IndexOf("<EOF>") != -1)
+                {
+                    break;
+                }
+                //responseHeaders.Append(Encoding.UTF8.GetString(responseData, 0, bytes));
+                //Console.WriteLine(responseHeaders);
+            }
+            while (bytes!=0);
+
+            Console.WriteLine(responseHeaders.ToString());
+            /*do
             {
                 bytes = sslStream.Read(responseData,0,1);
                 string temp = Encoding.UTF8.GetString(responseData, 0, bytes);
@@ -103,6 +94,7 @@ namespace HttpClient_.net_6._0_.PipeHttp
             else GetBodyCL(sslStream);
             
             //downloadFile(); 
+            */
         }
 
         private void GetBodyCL(SslStream stream, int chunkLength = -1)
@@ -194,19 +186,7 @@ namespace HttpClient_.net_6._0_.PipeHttp
             {
                 this.SetHeader(responseStrings[i]);
             }
-            /*while (!String.IsNullOrEmpty(responseStrings[i]))
-            {
-                this.SetHeader(responseStrings[i]);
-                i++;
-            }*/
-            /*StringBuilder MessageBody = new StringBuilder();
-            i++;
-            while (i + 1 < responseStrings.Length) // case if chunked 
-            {
-                MessageBody.Append(responseStrings[i + 1]);
-                i += 2;
-            }
-            this.MessageBody = MessageBody.ToString();*/
+            
             Console.WriteLine(this.statusCode);
             Console.WriteLine(this.type);
             Console.WriteLine(this.subtype);

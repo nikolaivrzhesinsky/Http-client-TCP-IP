@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Reflection.PortableExecutable;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -21,6 +22,7 @@ namespace HttpClient_.net_6._0_.PipeHttp
         private string encoding;
         private string MessageBody;
         private int contentLength;
+        private string location;
 
         private static string? fileNameUri;
         
@@ -86,7 +88,7 @@ namespace HttpClient_.net_6._0_.PipeHttp
             }
             byte[] byteBody = new byte[contentLength];
             MemoryStream streamFile = new MemoryStream(byteBody);
-            var path = "test1." + subtype;
+            var path = "test2." + subtype;
             Console.WriteLine(path);
             var responseData = new byte[1];
             int counter = 0;
@@ -140,6 +142,10 @@ namespace HttpClient_.net_6._0_.PipeHttp
             this.contentLength = Convert.ToInt32((fieldValue.Trim()));
         }
 
+        private void SetLocation(string fieldValue)
+        {
+            this.location = fieldValue.Trim();
+        }
         
         private void SetHeader(string header)
         {
@@ -157,6 +163,10 @@ namespace HttpClient_.net_6._0_.PipeHttp
             {
                 SetContentLength(fieldValue);
             }
+            else if (fieldName == "Location")
+            {
+                SetLocation(fieldValue);
+            }
         }
 
         public void DecodeResponse(String response) // тут было статик
@@ -167,23 +177,13 @@ namespace HttpClient_.net_6._0_.PipeHttp
             {
                 this.SetHeader(responseStrings[i]);
             }
-            /*while (!String.IsNullOrEmpty(responseStrings[i]))
-            {
-                this.SetHeader(responseStrings[i]);
-                i++;
-            }*/
-            /*StringBuilder MessageBody = new StringBuilder();
-            i++;
-            while (i + 1 < responseStrings.Length) // case if chunked 
-            {
-                MessageBody.Append(responseStrings[i + 1]);
-                i += 2;
-            }
-            this.MessageBody = MessageBody.ToString();*/
+            
+            //this.MessageBody = MessageBody.ToString();
             Console.WriteLine(this.statusCode);
             Console.WriteLine(this.type);
             Console.WriteLine(this.subtype);
             Console.WriteLine(this.encoding);
+            Console.WriteLine("Location is " + this.location);
             Console.WriteLine("content-length: " + Convert.ToString(this.contentLength));
             //Console.WriteLine(this.MessageBody);
         }

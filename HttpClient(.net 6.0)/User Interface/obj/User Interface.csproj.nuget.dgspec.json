@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\User Interface.csproj": {}
+    "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\User Interface.csproj": {}
   },
   "projects": {
-    "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj": {
+    "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj",
+        "projectUniqueName": "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj",
         "projectName": "Engine",
-        "projectPath": "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj",
-        "packagesPath": "C:\\Users\\kiril\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\obj\\",
+        "projectPath": "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj",
+        "packagesPath": "C:\\Users\\15nk3\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\kiril\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\15nk3\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -59,25 +55,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\User Interface.csproj": {
+    "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\User Interface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\User Interface.csproj",
+        "projectUniqueName": "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\User Interface.csproj",
         "projectName": "User Interface",
-        "projectPath": "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\User Interface.csproj",
-        "packagesPath": "C:\\Users\\kiril\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\obj\\",
+        "projectPath": "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\User Interface.csproj",
+        "packagesPath": "C:\\Users\\15nk3\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\User Interface\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\kiril\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\15nk3\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -91,8 +83,8 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj": {
-                "projectPath": "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj"
+              "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj": {
+                "projectPath": "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj"
               }
             }
           }
@@ -131,7 +123,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -12,7 +12,7 @@ namespace HttpClient_.net_6._0_
         {
             using TcpClient tcpClient = new TcpClient();
 
-            Request.GetRequestFromUri("https://www.google.com//");
+            Request.GetRequestFromUri("https://wikipedia.org//");
             
             await Connect.CreateConn(tcpClient);
 
@@ -24,7 +24,8 @@ namespace HttpClient_.net_6._0_
             }
             else
             {
-                new ResponseHttps().ResponseHttp(tcpClient);
+                if (Connect.sslStream != null) 
+                    new ResponseHttps().ResponseHttp(Connect.sslStream);
             }
 
             Connect.CloseConn(tcpClient);

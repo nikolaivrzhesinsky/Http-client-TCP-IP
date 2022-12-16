@@ -13,3 +13,18 @@ D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj
 D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).pdb
 D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).genruntimeconfig.cache
 D:\GitHub Repos\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\ref\HttpClient(.net 6.0).dll
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).exe
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).deps.json
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).runtimeconfig.json
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).dll
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\bin\Debug\net6.0\HttpClient(.net 6.0).pdb
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).csproj.AssemblyReference.cache
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).AssemblyInfoInputs.cache
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).AssemblyInfo.cs
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).csproj.CoreCompileInputs.cache
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).dll
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\refint\HttpClient(.net 6.0).dll
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).pdb
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\HttpClient(.net 6.0).genruntimeconfig.cache
+C:\Users\15nk3\Documents\GitHub\Http-client-TCP-IP\HttpClient(.net 6.0)\HttpClient(.net 6.0)\obj\Debug\net6.0\ref\HttpClient(.net 6.0).dll

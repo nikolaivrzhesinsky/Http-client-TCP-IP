@@ -16,8 +16,9 @@ namespace HttpClient_.net_6._0_.PipeHttp
             var stream = tcpClient.GetStream();
             //var requestMessage = $"GET /images/branding/googlelogo/tio1x/googlelogo_color_272x92dp.png HTTP/1.1\r\n" +
             //                   $"Host: {Connect.GetServer()}\r\nConnecn: keep alive\r\n\r\n";
-            var requestMessage = $"GET / HTTP/1.1\r\n" +
-                                 $"Host: {Connect.GetServer()}\r\nConnection: keep alive\r\n\r\n";
+            var requestMessage = $"GET {requestUri.AbsolutePath} HTTP/1.1\r\n" +
+                                 $"Host: {requestUri.Host}:{requestUri.Port}\r\nConnection: close\r\n\r\n";
+            
             Console.WriteLine(requestMessage);
             var requestData = Encoding.UTF8.GetBytes(requestMessage);
             await stream.WriteAsync(requestData);
