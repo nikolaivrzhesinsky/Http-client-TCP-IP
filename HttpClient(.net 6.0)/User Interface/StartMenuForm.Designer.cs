@@ -30,12 +30,14 @@ namespace User_Interface
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartMenu));
             this.SearchButton = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.AddTab = new System.Windows.Forms.ToolStripButton();
             this.URL_textbox = new System.Windows.Forms.ToolStripTextBox();
             this.NavigateBtn = new System.Windows.Forms.ToolStripButton();
+            this.RefreshButton = new System.Windows.Forms.ToolStripButton();
             this.TabController = new System.Windows.Forms.TabControl();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +55,8 @@ namespace User_Interface
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddTab,
             this.URL_textbox,
-            this.NavigateBtn});
+            this.NavigateBtn,
+            this.RefreshButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 27);
@@ -84,6 +87,15 @@ namespace User_Interface
             this.NavigateBtn.Size = new System.Drawing.Size(29, 24);
             this.NavigateBtn.Text = "toolStripButton2";
             this.NavigateBtn.Click += new System.EventHandler(this.NavigateBtn_Click);
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RefreshButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshButton.Image")));
+            this.RefreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(29, 24);
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // TabController
             // 
@@ -121,5 +133,6 @@ namespace User_Interface
         private ToolStripTextBox URL_textbox;
         private ToolStripButton NavigateBtn;
         private TabControl TabController;
+        private ToolStripButton RefreshButton;
     }
 }
