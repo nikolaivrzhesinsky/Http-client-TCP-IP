@@ -16,7 +16,16 @@ namespace User_Interface
             client = Client.GetInstance();
             _tabIndex = 0;
         }
+        private void WebBrowser_DocumentCompleted(object? sender, WebBrowserDocumentCompletedEventArgs e)
+        {
 
+        }
+
+
+        private void StartMenu_Load(object sender, EventArgs e)
+        {
+            AddTab_Click(sender, e);
+        }
         #region Buttons
         private async void NavigateBtn_Click(object sender, EventArgs e)
         {
@@ -42,17 +51,6 @@ namespace User_Interface
             TypeSwitchingFunction(TabController.SelectedTab.Text);
         }
         #endregion
-        private void WebBrowser_DocumentCompleted(object? sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            
-        }
-
-        
-        private void StartMenu_Load(object sender, EventArgs e)
-        {
-            AddTab_Click(sender, e);
-        }
-
         
         #region Support Methods
         private void TypeSwitchingFunction(string _type)
