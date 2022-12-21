@@ -2,6 +2,7 @@ using Engine;
 using System.Reflection;
 using System.Windows.Forms;
 using System.IO;
+using Engine.PipeHttp;
 using HttpClient_.net_6._0_.PipeHttp;
 
 namespace User_Interface
@@ -30,31 +31,8 @@ namespace User_Interface
         #region Buttons
         private async void NavigateBtn_Click(object sender, EventArgs e)
         {
-            if (URL_textbox.Text == null)
-                return;
-            Connect.CloseConn();
-            
-            Response response = new Response();
-            
-            Request.GetRequestFromUri(URL_textbox.Text);
-
-            await Connect.CreateConn();
-
-            await Request.RequestHttp();
-            
-            if (Request.requestUri.Scheme == "http")
-            {
-                await response.ResponseHttp(Connect.tcpClient); // тут было статик
-            }
-            else
-            {
-                if (Connect.sslStream != null) 
-                    new ResponseHttps().ResponseHttp(Connect.sslStream);
-            }
-            
-            string type = response.GetSubType() ;//Here should be a method from Engine namespace
-            TabController.SelectedTab.Text = type;
-            TypeSwitchingFunction(type, response.GetPath());
+            await Chief.Ainigilyator(URL_textbox.Text);
+            TypeSwitchingFunction(Chief.type, Chief.pathFile);
         }
 
         private void AddTab_Click(object sender, EventArgs e)

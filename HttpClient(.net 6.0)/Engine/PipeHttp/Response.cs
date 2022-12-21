@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Engine.PipeHttp;
 
 namespace Engine
 {
@@ -14,11 +16,13 @@ namespace Engine
         private string subtype;
         private string encoding;
         private string MessageBody;
-        private int contentLength;
+        private int contentLength = 0;
         private string location;
         private static int _fileIndex = 0;
         private String pathFile;
-
+        private CacheInfo cacheInfo;
+        private bool isCached = false;
+        private string date;
         private static string? fileNameUri;
 
         public String GetSubType() => subtype;
@@ -38,7 +42,7 @@ namespace Engine
             {
                 bytes = await stream.ReadAsync(responseData,0,1);
                 string temp = Encoding.UTF8.GetString(responseData, 0, bytes);
-                
+                //убрать
                 if (temp == "\r" || temp == "\n")
                 {
                     flagEndHeaders += temp;
@@ -46,9 +50,18 @@ namespace Engine
                 responseHeaders.Append((Encoding.UTF8.GetString(responseData, 0, bytes)));
             }
             while (bytes > 0 && !responseHeaders.ToString().Contains("\r\n\r\n"));
-
-            Console.WriteLine(responseHeaders);
+            
             DecodeResponse(responseHeaders.ToString());
+
+            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsolutePath) && this.statusCode == 304)
+            {
+                var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsolutePath];
+                this.subtype = cacheResponse.subtype;
+                this.pathFile = cacheResponse.pathFile;
+                FileManager.Log("\nCONDITIONAL IS WORKING\n");
+                return;
+            }
+            
             if (this.encoding == "chunked")
             {
                 int chunkLength = 0;
@@ -85,9 +98,10 @@ namespace Engine
             {
                 contentLength = chunkLength;
             }
+            
             byte[] byteBody = new byte[contentLength];
             MemoryStream streamFile = new MemoryStream(byteBody);
-            pathFile = $"responseResult{_fileIndex}." + subtype;
+            //pathFile = $"responseResult{_fileIndex}." + subtype;
             var responseData = new byte[1];
             int counter = 0;
             var responseBody = new StringBuilder();
@@ -95,18 +109,26 @@ namespace Engine
 
             using (BinaryWriter writer = new BinaryWriter(File.Open(pathFile, FileMode.Append)))
             {
-                do
+                if (contentLength > 0)
                 {
-                    bytes = await stream.ReadAsync(responseData, 0, 1);
-                    counter++;
-                    responseBody.Append(Encoding.UTF8.GetString(responseData, 0, bytes));
-                    byteBody[counter-1] = responseData[0];
-                    if (counter >= contentLength)
+                    do
                     {
-                        break;
-                    }
-                } while (bytes > 0);
-                
+                        bytes = await stream.ReadAsync(responseData, 0, 1);
+                        counter++;
+                        responseBody.Append(Encoding.UTF8.GetString(responseData, 0, bytes));
+                        byteBody[counter - 1] = responseData[0];
+                        if (counter >= contentLength)
+                        {
+                            break;
+                        }
+                    } while (bytes > 0);
+                }
+                else
+                {
+                    String message = FileManager.GetErorMessage(statusCode.ToString());
+                    
+                    byteBody =  Encoding.ASCII.GetBytes(message);
+                }
                 writer.Write(byteBody);
                 //Console.WriteLine("File has been written");
             }
@@ -145,6 +167,24 @@ namespace Engine
             this.location = fieldValue.Trim();
         }
         
+        private void SetCacheInfo(string fieldName, string fieldValue)
+        {
+            if (!isCached)
+            {
+                this.cacheInfo = new CacheInfo(fieldName, fieldValue);
+                isCached = true;
+            }
+            else
+            {
+                this.cacheInfo.SetCache(fieldName, fieldValue);
+            }
+        }
+
+        private void SetDate(string fieldValue)
+        {
+            date = fieldValue.Trim();
+        }
+        
         private void SetHeader(string header)
         {
             string fieldName = header.Substring(0, header.IndexOf(':'));
@@ -165,17 +205,55 @@ namespace Engine
             {
                 SetLocation(fieldValue);
             }
+            else if (fieldName == "Date")
+            {
+                SetDate(fieldValue);
+            }
+            else if (fieldName == "Cache-Control" || fieldName == "Expires" || fieldName == "ETag" || fieldName == "Last-Modified")
+            {
+                SetCacheInfo(fieldName, fieldValue);
+            }
         }
 
+        
+        
         public void DecodeResponse(String response) // тут было статик
         {
             var responseStrings = response.Split("\r\n");
             this.statusCode = Convert.ToInt32(responseStrings[0].Split(' ')[1]);
+            FileManager.Log(responseStrings[0] + "\n");
+            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsolutePath)) // контент устарел
+            {
+                //var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsolutePath];
+                if (this.statusCode == 304)
+                {
+                    return;
+                }
+                if (this.statusCode == 200)
+                {
+                    CacheInfo.CacheTable.Remove(Request.requestUri.AbsolutePath);
+                }
+            }
+
             for (int i = 1; i < responseStrings.Length - 2; i++)
             {
                 this.SetHeader(responseStrings[i]);
+                FileManager.Log(responseStrings[i]+"\n\n");
             }
-            
+            pathFile = $"responseResult{_fileIndex}." + subtype;
+            if (isCached)
+            {
+                cacheInfo.SetCacheType();
+                cacheInfo.responseDT = DateTime.ParseExact(date,
+                    "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
+                    CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat,
+                    DateTimeStyles.AdjustToUniversal);
+                cacheInfo.subtype = subtype;
+                cacheInfo.pathFile = pathFile;
+                CacheInfo.CacheTable.Add(Request.requestUri.AbsolutePath, cacheInfo);
+                //Console.WriteLine(cacheInfo.cacheType);
+                FileManager.Log("Cache type"+cacheInfo.cacheType);
+            }
             //this.MessageBody = MessageBody.ToString();
             //Console.WriteLine(this.statusCode);
             //Console.WriteLine(this.type);

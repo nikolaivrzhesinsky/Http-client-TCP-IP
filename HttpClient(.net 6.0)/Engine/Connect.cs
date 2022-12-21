@@ -27,7 +27,7 @@ namespace Engine
                 _server = Request.requestUri.DnsSafeHost;
                 int port = Request.requestUri.Scheme == "http" ?  80 : 443;
                 
-                await tcpClient.ConnectAsync(_server, port);
+                await tcpClient.ConnectAsync(_server, Request.requestUri.Port);
                 //Console.WriteLine("Подключение установлено");
             }
             catch (SocketException ex)
@@ -87,6 +87,7 @@ namespace Engine
             X509Chain chain,
             SslPolicyErrors sslPolicyErrors)
         {
+            //запросить код у 11
             if (sslPolicyErrors == SslPolicyErrors.None) {
                 return true;
             }
