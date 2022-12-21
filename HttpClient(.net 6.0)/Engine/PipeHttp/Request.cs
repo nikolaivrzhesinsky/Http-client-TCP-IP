@@ -12,14 +12,16 @@ namespace Engine
     {
         public static Uri requestUri;
 
-        public static async Task RequestHttp(bool conditional = false)
+        public static async Task RequestHttp(bool conditional = false, bool auntificate = false)
         {
             var stream = Connect.tcpClient.GetStream();
             
             //var requestMessage = $"GET /images/branding/googlelogo/tio1x/googlelogo_color_272x92dp.png HTTP/1.1\r\n" +
             //                   $"Host: {Connect.GetServer()}\r\nConnecn: keep alive\r\n\r\n";
             var requestMessage = $"GET {requestUri.AbsolutePath} HTTP/1.1\r\n" +
+            
                                  $"Host: {requestUri.Host}:{requestUri.Port}" +
+
                                  $"\r\nConnection: keep alive";
             if (conditional)
             {
@@ -33,6 +35,12 @@ namespace Engine
                     requestMessage += $"\r\nIf-Match: \"{cacheResponse.ETag}\"";
                 }
             }
+
+            if (auntificate)
+            {
+                requestMessage += $"\r\nAuthorization: YWRtaW46YWRtaW4=";
+            }
+            
             requestMessage += "\r\n\r\n";
             FileManager.Log(requestMessage);
             var requestData = Encoding.UTF8.GetBytes(requestMessage);
