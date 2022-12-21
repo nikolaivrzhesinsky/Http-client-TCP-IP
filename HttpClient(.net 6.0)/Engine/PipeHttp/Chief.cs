@@ -13,9 +13,10 @@ public class Chief
         if (uriWF == null)
         return;
         Connect.CloseConn();
-            
-        Response response = new Response();
-        string absUri = new Uri(uriWF).AbsolutePath;
+        type = "";
+        pathFile = "";
+        
+        string absUri = new Uri(uriWF).AbsoluteUri;
         
         if (CacheInfo.CacheTable.ContainsKey(absUri))
         {
@@ -44,19 +45,20 @@ public class Chief
 
         await Connect.CreateConn();
         FileManager.Log("Connect complete\n");
-
-        if (CacheInfo.CacheTable.ContainsKey(absUri) &&
-            (CacheInfo.CacheTable[absUri].cacheType == CacheType.NO_CACHE ||
-             CacheInfo.CacheTable[absUri].cacheType == CacheType.MUST_REVALIDATE_CONDITIONAL)) // контент устарел
+        bool conditional = CacheInfo.CacheTable.ContainsKey(absUri) &&
+                           (CacheInfo.CacheTable[absUri].cacheType == CacheType.NO_CACHE ||
+                            CacheInfo.CacheTable[absUri].cacheType == CacheType.MUST_REVALIDATE_CONDITIONAL);
+        if (conditional)
         {
             FileManager.Log("\nOLD\n");
-            await Request.RequestHttp(true);
         }
-        else
-        {
-            await Request.RequestHttp();
-        }
+        
+        
+        await Request.RequestHttp(conditional, Response.authenticate);
+        
         FileManager.Log("Request complete\n");
+        
+        Response response = new Response();
             
         if (Request.requestUri.Scheme == "http")
         {

@@ -23,8 +23,9 @@ namespace Engine
         private CacheInfo cacheInfo;
         private bool isCached = false;
         private string date;
+        public static bool authenticate = false;
         private static string? fileNameUri;
-
+        
         public String GetSubType() => subtype;
         
         public async Task ResponseHttp(TcpClient tcpClient) // тут было статик
@@ -52,10 +53,20 @@ namespace Engine
             while (bytes > 0 && !responseHeaders.ToString().Contains("\r\n\r\n"));
             
             DecodeResponse(responseHeaders.ToString());
-
-            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsolutePath) && this.statusCode == 304)
+            //auntith
+            if (authenticate)
             {
-                var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsolutePath];
+                await Chief.Ainigilyator(Request.requestUri.AbsoluteUri);
+            }
+
+            if (Chief.type != "" && Chief.pathFile != "")
+            {
+                return;
+            }
+
+            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsoluteUri) && this.statusCode == 304)
+            {
+                var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsoluteUri];
                 this.subtype = cacheResponse.subtype;
                 this.pathFile = cacheResponse.pathFile;
                 FileManager.Log("\nCONDITIONAL IS WORKING\n");
@@ -88,7 +99,9 @@ namespace Engine
                 Console.WriteLine("i'm out");
             }
             else await GetBodyCL(stream);
-            
+
+            authenticate = false;
+
             //downloadFile(); 
         }
 
@@ -180,6 +193,14 @@ namespace Engine
             }
         }
 
+        private void SetAuthenticate(string fieldValue)
+        {
+            if (fieldValue.Contains("Basic"))
+            {
+                authenticate = true;
+            }
+        }
+
         private void SetDate(string fieldValue)
         {
             date = fieldValue.Trim();
@@ -213,6 +234,10 @@ namespace Engine
             {
                 SetCacheInfo(fieldName, fieldValue);
             }
+            else if (fieldName == "WWW-Authenticate")
+            {
+                SetAuthenticate(fieldValue);
+            }
         }
 
         
@@ -222,7 +247,8 @@ namespace Engine
             var responseStrings = response.Split("\r\n");
             this.statusCode = Convert.ToInt32(responseStrings[0].Split(' ')[1]);
             FileManager.Log(responseStrings[0] + "\n");
-            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsolutePath)) // контент устарел
+            
+            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsoluteUri)) // контент устарел
             {
                 //var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsolutePath];
                 if (this.statusCode == 304)
@@ -231,7 +257,7 @@ namespace Engine
                 }
                 if (this.statusCode == 200)
                 {
-                    CacheInfo.CacheTable.Remove(Request.requestUri.AbsolutePath);
+                    CacheInfo.CacheTable.Remove(Request.requestUri.AbsoluteUri);
                 }
             }
 
@@ -240,6 +266,9 @@ namespace Engine
                 this.SetHeader(responseStrings[i]);
                 FileManager.Log(responseStrings[i]+"\n\n");
             }
+            
+            
+            
             pathFile = $"responseResult{_fileIndex}." + subtype;
             if (isCached)
             {
@@ -250,10 +279,11 @@ namespace Engine
                     DateTimeStyles.AdjustToUniversal);
                 cacheInfo.subtype = subtype;
                 cacheInfo.pathFile = pathFile;
-                CacheInfo.CacheTable.Add(Request.requestUri.AbsolutePath, cacheInfo);
+                CacheInfo.CacheTable.Add(Request.requestUri.AbsoluteUri, cacheInfo);
                 //Console.WriteLine(cacheInfo.cacheType);
                 FileManager.Log("Cache type"+cacheInfo.cacheType);
             }
+            FileManager.Log("Authenticate:" + authenticate);
             //this.MessageBody = MessageBody.ToString();
             //Console.WriteLine(this.statusCode);
             //Console.WriteLine(this.type);
