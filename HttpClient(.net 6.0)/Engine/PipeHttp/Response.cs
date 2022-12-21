@@ -59,6 +59,7 @@ namespace Engine
                 await Chief.Ainigilyator(Request.requestUri.AbsoluteUri);
             }
 
+           
             if (Chief.type != "" && Chief.pathFile != "")
             {
                 return;
@@ -66,6 +67,7 @@ namespace Engine
 
             if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsoluteUri) && this.statusCode == 304)
             {
+
                 var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsoluteUri];
                 this.subtype = cacheResponse.subtype;
                 this.pathFile = cacheResponse.pathFile;
@@ -247,7 +249,7 @@ namespace Engine
             var responseStrings = response.Split("\r\n");
             this.statusCode = Convert.ToInt32(responseStrings[0].Split(' ')[1]);
             FileManager.Log(responseStrings[0] + "\n");
-            
+
             if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsoluteUri)) // контент устарел
             {
                 //var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsolutePath];

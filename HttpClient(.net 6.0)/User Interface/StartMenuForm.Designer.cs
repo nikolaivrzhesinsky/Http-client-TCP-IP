@@ -30,6 +30,7 @@ namespace User_Interface
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartMenu));
             this.SearchButton = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -37,6 +38,7 @@ namespace User_Interface
             this.URL_textbox = new System.Windows.Forms.ToolStripTextBox();
             this.NavigateBtn = new System.Windows.Forms.ToolStripButton();
             this.TabController = new System.Windows.Forms.TabControl();
+            this.CloseTab = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +55,8 @@ namespace User_Interface
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddTab,
             this.URL_textbox,
-            this.NavigateBtn});
+            this.NavigateBtn,
+            this.CloseTab});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 27);
@@ -94,6 +97,16 @@ namespace User_Interface
             this.TabController.Size = new System.Drawing.Size(800, 424);
             this.TabController.TabIndex = 5;
             // 
+            // CloseTab
+            // 
+            this.CloseTab.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CloseTab.Image = ((System.Drawing.Image)(resources.GetObject("CloseTab.Image")));
+            this.CloseTab.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CloseTab.Name = "CloseTab";
+            this.CloseTab.Size = new System.Drawing.Size(29, 24);
+            this.CloseTab.Text = "toolStripButton1";
+            this.CloseTab.Click += new System.EventHandler(this.CloseTab_Click);
+            // 
             // StartMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -104,6 +117,7 @@ namespace User_Interface
             this.Controls.Add(this.SearchButton);
             this.Name = "StartMenu";
             this.Text = "Our custom browser";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StartMenu_FormClosing);
             this.Load += new System.EventHandler(this.StartMenu_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -121,5 +135,6 @@ namespace User_Interface
         private ToolStripTextBox URL_textbox;
         private ToolStripButton NavigateBtn;
         private TabControl TabController;
+        private ToolStripButton CloseTab;
     }
 }
