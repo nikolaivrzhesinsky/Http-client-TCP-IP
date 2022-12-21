@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hIpta2h5wzFktyX/Ogom6kQ86LfDSQ/44VxiYXXCRY+ks/i9ZUgCWalOY0pkxw3Jwik0d507Vd9XQ6Csmr90tg==",
+  "dgSpecHash": "tKCo/kcyMZocxLKj6yuwqZNsYn/7wseHnHAIyPMWX0H7YY1bd56U7Q7rxKXQNG2ed3CeLrFS8CCRicHU5vXMqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj",
+  "projectFilePath": "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

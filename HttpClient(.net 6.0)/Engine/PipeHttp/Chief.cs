@@ -15,8 +15,7 @@ public class Chief
         Connect.CloseConn();
             
         Response response = new Response();
-        string absUri = new Uri(uriWF).AbsolutePath;
-        
+        string absUri = new Uri(uriWF).AbsoluteUri;
         if (CacheInfo.CacheTable.ContainsKey(absUri))
         {
             var cacheResponse = CacheInfo.CacheTable[absUri];
@@ -70,6 +69,6 @@ public class Chief
             
         type = response.GetSubType() ;
         pathFile = response.GetPath();
-
+        FileManager.Log("\n--------------------------------\n");
     }
 }

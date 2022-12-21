@@ -53,9 +53,9 @@ namespace Engine
             
             DecodeResponse(responseHeaders.ToString());
 
-            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsolutePath) && this.statusCode == 304)
+            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsoluteUri) && this.statusCode == 304)
             {
-                var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsolutePath];
+                var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsoluteUri];
                 this.subtype = cacheResponse.subtype;
                 this.pathFile = cacheResponse.pathFile;
                 FileManager.Log("\nCONDITIONAL IS WORKING\n");
@@ -222,7 +222,7 @@ namespace Engine
             var responseStrings = response.Split("\r\n");
             this.statusCode = Convert.ToInt32(responseStrings[0].Split(' ')[1]);
             FileManager.Log(responseStrings[0] + "\n");
-            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsolutePath)) // контент устарел
+            if (CacheInfo.CacheTable.ContainsKey(Request.requestUri.AbsoluteUri)) // контент устарел
             {
                 //var cacheResponse = CacheInfo.CacheTable[Request.requestUri.AbsolutePath];
                 if (this.statusCode == 304)
@@ -231,7 +231,7 @@ namespace Engine
                 }
                 if (this.statusCode == 200)
                 {
-                    CacheInfo.CacheTable.Remove(Request.requestUri.AbsolutePath);
+                    CacheInfo.CacheTable.Remove(Request.requestUri.AbsoluteUri);
                 }
             }
 
@@ -250,7 +250,7 @@ namespace Engine
                     DateTimeStyles.AdjustToUniversal);
                 cacheInfo.subtype = subtype;
                 cacheInfo.pathFile = pathFile;
-                CacheInfo.CacheTable.Add(Request.requestUri.AbsolutePath, cacheInfo);
+                CacheInfo.CacheTable.Add(Request.requestUri.AbsoluteUri, cacheInfo);
                 //Console.WriteLine(cacheInfo.cacheType);
                 FileManager.Log("Cache type"+cacheInfo.cacheType);
             }
