@@ -38,7 +38,7 @@ namespace Engine
 
             if (auntificate)
             {
-                requestMessage += $"\r\nAuthorization: YWRtaW46YWRtaW4=";
+                requestMessage += $"\r\nAuthorization: Basic YWRtaW46YWRtaW4=";
             }
             
             requestMessage += "\r\n\r\n";

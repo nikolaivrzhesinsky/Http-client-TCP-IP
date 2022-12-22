@@ -17,7 +17,7 @@ namespace Engine
         private string encoding;
         private string MessageBody;
         private int contentLength = 0;
-        private string location;
+        private string location="";
         private static int _fileIndex = 0;
         private String pathFile;
         private CacheInfo cacheInfo;
@@ -52,10 +52,20 @@ namespace Engine
             }
             while (bytes > 0 && !responseHeaders.ToString().Contains("\r\n\r\n"));
             
+            FileManager.Log(responseHeaders.ToString());
+            
             DecodeResponse(responseHeaders.ToString());
+
+            if (statusCode == 301 && this.location != "")
+            {
+                _fileIndex--;
+                await Chief.Ainigilyator(location);
+            }
+            
             //auntith
             if (authenticate)
             {
+                _fileIndex--;
                 await Chief.Ainigilyator(Request.requestUri.AbsoluteUri);
             }
 
@@ -242,8 +252,7 @@ namespace Engine
             }
         }
 
-        
-        
+
         public void DecodeResponse(String response) // тут было статик
         {
             var responseStrings = response.Split("\r\n");
@@ -297,6 +306,7 @@ namespace Engine
         }
 
         public String GetPath() => pathFile;
+        
 
     }
 }

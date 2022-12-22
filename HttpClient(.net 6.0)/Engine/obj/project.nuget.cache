@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "tKCo/kcyMZocxLKj6yuwqZNsYn/7wseHnHAIyPMWX0H7YY1bd56U7Q7rxKXQNG2ed3CeLrFS8CCRicHU5vXMqA==",
+  "dgSpecHash": "t4MoQ4EjHMJROiPcNdZ8BDnuYw5he8CEmwPSRMSTdoZCe7VlDdU5O082MJI/v7m40GsbMXnICsY03tR6z+CbFg==",
   "success": true,
-  "projectFilePath": "D:\\GitHub Repos\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\15nk3\\Documents\\GitHub\\Http-client-TCP-IP\\HttpClient(.net 6.0)\\Engine\\Engine.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\15nk3\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\15nk3\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

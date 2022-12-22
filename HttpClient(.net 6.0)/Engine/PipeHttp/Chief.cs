@@ -9,20 +9,19 @@ public class Chief
 
     public static async Task Ainigilyator(String uriWF)
     {
-        
-        if (uriWF == null)
-        return;
-        Connect.CloseConn();
 
-            
-        Response response = new Response();
+        if (uriWF == null)
+        {
+            return;
+        }
+
+        Connect.CloseConn();
+        
         string absUri = new Uri(uriWF).AbsoluteUri;
         
         type = "";
         pathFile = "";
         
-        
-       
         if (CacheInfo.CacheTable.ContainsKey(absUri))
         {
             var cacheResponse = CacheInfo.CacheTable[absUri];
@@ -46,7 +45,7 @@ public class Chief
         }
 
         Request.GetRequestFromUri(uriWF);
-        FileManager.Log("Request complete\n");
+        //FileManager.Log("Request complete\n");
 
         await Connect.CreateConn();
         FileManager.Log("Connect complete\n");
