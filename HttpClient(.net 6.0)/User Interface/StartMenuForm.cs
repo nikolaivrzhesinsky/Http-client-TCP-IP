@@ -22,13 +22,15 @@ namespace User_Interface
         }
         private struct File
         {
-            public File(int _index, string _path)
+            public File(int _index, string _path, string _url)
             {
                 index = _index;
                 filePath = _path;
+                url = _url;
             }
             public int index { get; private set; }
             public string filePath { get; private set; }
+            public string url { get; private set; }
         }
             
 
@@ -50,6 +52,7 @@ namespace User_Interface
                     TabController.SelectTab(TabController.TabPages.Count - 1);
                 CloseTab_Click(sender, e);
             }
+            FileManager.DeleteCaches();
         }
         #endregion
 
@@ -59,7 +62,7 @@ namespace User_Interface
             if (URL_textbox.Text == "")
                 return;
             await Chief.Ainigilyator(URL_textbox.Text);
-            TypeSwitchingFunction(Chief.type, Chief.pathFile, sender, e);
+            TypeSwitchingFunction(Chief.type, Chief.pathFile, new Uri(URL_textbox.Text).AbsoluteUri, sender, e);
             URL_textbox.Text = "";
         }
 
@@ -72,13 +75,16 @@ namespace User_Interface
         private void CloseTab_Click(object sender, EventArgs e)
         {
             var file = _files.Find(file => file.index == TabController.SelectedIndex);
-            //Send file path using file.path
-            MessageBox.Show(file.filePath);
-            _files.Remove(file);
-            TabController.TabPages.RemoveAt(TabController.SelectedIndex);
             if(TabController.TabPages.Count != 0)
                 TabController.SelectTab(TabController.TabPages.Count - 1);
             _tabIndex -= 1;
+            var tabPage = TabController.SelectedTab;
+            TabController.TabPages.RemoveAt(TabController.SelectedIndex);
+            tabPage.Controls[0].Dispose();
+            MessageBox.Show(file.filePath);
+            //Send file path using file.path
+            FileManager.DeleteResponseFile(file.filePath, file.url, e.ToString() == "System.Windows.Forms.FormClosingEventArgs");
+            _files.Remove(file);
 
         }
         private void RefreshButton_Click(object sender, EventArgs e)
@@ -90,19 +96,19 @@ namespace User_Interface
         #endregion
         
         #region Support Methods
-        private void TypeSwitchingFunction(string _type, String path, object sender, EventArgs e)
+        private void TypeSwitchingFunction(string _type, String path, string url, object sender, EventArgs e)
         {
             switch (_type)
             {
                 case "html":
-                    SetHtml(path, sender, e);
+                    SetHtml(path, url, sender, e);
                     break;
                 case "png":
-                    SetImage(path, sender, e);
+                    SetImage(path, url, sender, e);
                     break;
             }
         }
-        private void SetHtml(String path, object sender, EventArgs e)
+        private void SetHtml(String path, String url, object sender, EventArgs e)
         {
             if (TabController.TabPages.Count == 0)
                 AddTab_Click(sender, e);
@@ -112,16 +118,16 @@ namespace User_Interface
             TabController.SelectedTab.Controls.Add(webBrowser);
             StreamReader sr = new StreamReader(path);
             ((WebBrowser)TabController.SelectedTab.Controls[0]).DocumentText = sr.ReadToEnd();
-            _files.Add(new File(TabController.SelectedIndex, path));
+            _files.Add(new File(TabController.SelectedIndex, path, url));
         }
-        private void SetImage(String path, object sender, EventArgs e)
+        private void SetImage(String path, String url, object sender, EventArgs e)
         {
             if (TabController.TabPages.Count == 0)
                 AddTab_Click(sender, e);
             TabController.SelectedTab.Controls.Clear();
             TabController.SelectedTab.BackgroundImageLayout = ImageLayout.Stretch;
             TabController.SelectedTab.BackgroundImage = Image.FromFile(path);
-            _files.Add(new File(TabController.SelectedIndex, path));
+            _files.Add(new File(TabController.SelectedIndex, path, url));
         }
         private void SetVideo()
         {
