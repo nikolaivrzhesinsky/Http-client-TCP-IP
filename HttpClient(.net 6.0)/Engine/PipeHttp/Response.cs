@@ -36,6 +36,7 @@ namespace Engine
             var responseHeaders = new StringBuilder();
             List<byte> headersList = new List<byte>();
             string flagEndHeaders = null;
+            authenticate = false;
 
             _fileIndex++;
 
