@@ -25,7 +25,7 @@ namespace Engine
                                  $"\r\nConnection: keep alive";
             if (conditional)
             {
-                var cacheResponse = CacheInfo.CacheTable[requestUri.AbsolutePath];
+                var cacheResponse = CacheInfo.CacheTable[requestUri.AbsoluteUri];
                 if (cacheResponse.isLastModified)
                 {
                     requestMessage += $"\r\nIf-Modified-Since: {cacheResponse.lastModified}";
