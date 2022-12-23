@@ -78,9 +78,9 @@ namespace User_Interface
             if(TabController.TabPages.Count != 0)
                 TabController.SelectTab(TabController.TabPages.Count - 1);
             _tabIndex -= 1;
-            var tabPage = TabController.SelectedTab;
+            TabController.SelectedTab.Controls.Clear();
             TabController.TabPages.RemoveAt(TabController.SelectedIndex);
-            tabPage.Controls[0].Dispose();
+            //tabPage.Controls[0].Dispose();
             MessageBox.Show(file.filePath);
             //Send file path using file.path
             FileManager.DeleteResponseFile(file.filePath, file.url, e.ToString() == "System.Windows.Forms.FormClosingEventArgs");
