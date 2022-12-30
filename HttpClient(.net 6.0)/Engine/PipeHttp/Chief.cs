@@ -17,11 +17,22 @@ public class Chief
 
         Connect.CloseConn();
         
+        
         string absUri = new Uri(uriWF).AbsoluteUri;
         
         type = "";
         pathFile = "";
-        
+        //Request.GetRequestFromUri(uriWF);
+        //await Connect.CreateConn();
+        /*await Request.RequestPostHttp();
+        Response resp = new Response();
+        if (Request.requestUri.Scheme == "http")
+        {
+            await resp.ResponseHttp(Connect.tcpClient); // тут было статик
+        }
+        type = resp.GetSubType() ;
+        pathFile = resp.GetPath();
+        return;*/ 
         if (CacheInfo.CacheTable.ContainsKey(absUri))
         {
             var cacheResponse = CacheInfo.CacheTable[absUri];
@@ -36,6 +47,10 @@ public class Chief
                     return;
                 }
                 // если несвежий, удалить из CacheTable
+                if (cacheResponse.cacheType == CacheType.MUST_REVALIDATE)
+                {
+                    CacheInfo.CacheTable.Remove(absUri);
+                }
             }
 
             if (cacheResponse.cacheType == CacheType.NO_STORE)

@@ -52,6 +52,7 @@ namespace User_Interface
                     TabController.SelectTab(TabController.TabPages.Count - 1);
                 CloseTab_Click(sender, e);
             }
+            //if (TabController.TabPages.Count != 0)
             FileManager.DeleteCaches();
         }
         #endregion
@@ -81,7 +82,7 @@ namespace User_Interface
             TabController.SelectedTab.Controls.Clear();
             TabController.TabPages.RemoveAt(TabController.SelectedIndex);
             //tabPage.Controls[0].Dispose();
-            MessageBox.Show(file.filePath);
+            //MessageBox.Show(file.filePath);
             //Send file path using file.path
             FileManager.DeleteResponseFile(file.filePath, file.url, e.ToString() == "System.Windows.Forms.FormClosingEventArgs");
             _files.Remove(file);
@@ -119,6 +120,7 @@ namespace User_Interface
             StreamReader sr = new StreamReader(path);
             ((WebBrowser)TabController.SelectedTab.Controls[0]).DocumentText = sr.ReadToEnd();
             _files.Add(new File(TabController.SelectedIndex, path, url));
+            sr.Close();
         }
         private void SetImage(String path, String url, object sender, EventArgs e)
         {

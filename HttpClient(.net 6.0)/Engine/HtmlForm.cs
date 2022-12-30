@@ -4,7 +4,7 @@ namespace Engine.PipeHttp;
 
 public class HtmlForm
 {
-    private Dictionary<string, string> FormTags;
+    private Dictionary<string, string> FormTags = new Dictionary<string, string>();
     public HtmlForm(string _action, string _method, string _enctype = "application/x-www-form-urlencoded")
     {
         action = _action;
@@ -14,7 +14,7 @@ public class HtmlForm
     public string action { get; private set; }
     public string method { get; private set; }
     public string enctype { get; private set; }
-    private void AddTag (string name, string value)
+    public void AddTag (string name, string value)
     {
         FormTags.Add(name, value);
     }
@@ -34,7 +34,7 @@ public class HtmlForm
         else if (enctype == "application/json")
         {
             var x = FormTags.Select(d =>
-                string.Format("\"{0}\": {1}", d.Key, string.Join(",", d.Value)));
+                string.Format("\"{0}\": \"{1}\"", d.Key, string.Join(",", d.Value)));
             body =  "{" + string.Join(",", x) + "}";
         }
         return body;

@@ -12,6 +12,28 @@ namespace Engine
     {
         public static Uri requestUri;
 
+        public static async Task RequestPostHttp()
+        {
+            var stream = Connect.tcpClient.GetStream();
+            HtmlForm htmlForm = new HtmlForm("/auth/register", "POST", "application/json");
+            htmlForm.AddTag("email", "fallerartem@yandex.ru");
+            htmlForm.AddTag("password", "password");
+            string body = htmlForm.ToEncType();
+            var requestMessage = $"POST {htmlForm.action} HTTP/1.1\r\n" +
+            
+                                 $"Host: {requestUri.Host}:{requestUri.Port}" +
+
+                                 $"\r\nConnection: keep alive" +
+                                 
+                                 $"\r\nContent-Type: {htmlForm.enctype} " +
+
+                                 $"\r\nContent-Length: {body.Length} " +
+                                 $"\r\n\r\n{body}";
+            
+            var requestData = Encoding.UTF8.GetBytes(requestMessage);
+            await stream.WriteAsync(requestData);
+            FileManager.Log(requestMessage);
+        }
         public static async Task RequestHttp(bool conditional = false, bool auntificate = false)
         {
             var stream = Connect.tcpClient.GetStream();

@@ -14,6 +14,7 @@ public class FileManager
             FileInfo file = new FileInfo(cache);
             if (file.Exists)
             {
+                Log($"\n\n{file.Name}");
                 file.Delete();
             }
         }
@@ -30,13 +31,18 @@ public class FileManager
 
     public static void DeleteResponseFile(String filePath, String url, bool finish = false)
     {
-        FileInfo file = new FileInfo(filePath);
+        if (!File.Exists(filePath))
+        {
+            return;
+        }
+        //FileInfo file = new FileInfo(filePath);
         try
         {
-            if (file.Exists)
+            if (File.Exists(filePath))
             {
                 if (finish == true)
                 {
+                    FileInfo file = new FileInfo(filePath);
                     file.Delete();
                     return;
                 }
@@ -48,11 +54,12 @@ public class FileManager
                         if (!Caches.Contains(filePath))
                         {
                             Caches.Add(filePath);
+                            
                         }
 
                         return;
                     }
-                    
+                    FileInfo file = new FileInfo(filePath);
                     file.Delete();
 
                     return; 
@@ -61,7 +68,7 @@ public class FileManager
         }
         catch (Exception e)
         {
-            //Caches.Add(filePath);
+            Caches.Add(filePath);
         }
     }
 
